@@ -1,12 +1,10 @@
 import React from 'react';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   HeaderContainer,
   HeaderSearch,
   HeaderSearchInput,
   HeaderSearchIcon,
-  ThemeSwitch,
 } from './styles';
 
 const Header = () => {
@@ -18,7 +16,6 @@ const Header = () => {
         </HeaderSearchIcon>
         <HeaderSearchInput />
       </HeaderSearch>
-      <ThemeSwitch />
     </HeaderContainer>
   );
 };

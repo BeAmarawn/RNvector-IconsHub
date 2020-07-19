@@ -1,11 +1,22 @@
 import React from 'react';
+import FlatList from 'react-native';
+import { Container, LabelFont, ListsContainer } from './styles';
 
-import { Container } from './styles';
-
-import Header from '../../components/Header';
+import IconList from '../../components/IconList';
 
 const Home = () => {
-  return <Container />;
+  const data = [{name: 'home'}, {name: 'heart'}];
+
+  return (
+    <Container>
+      <ListsContainer>
+        <LabelFont>AntDesign</LabelFont>
+        <FlatList data={data} renderItem={({data}) => (
+          <IconList data={data} />
+        )} />
+      </ListsContainer>
+    </Container>
+  );
 };
 
 export default Home;

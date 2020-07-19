@@ -7,8 +7,9 @@ export const HeaderContainer = styled.View`
 `;
 export const HeaderSearch = styled.View`
   margin-top: 13px;
-  margin-left: 10px;
-  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   flex-direction: row;
   height: 40px;
   border-color: #fff;
@@ -26,4 +27,3 @@ export const HeaderSearchInput = styled.TextInput`
 export const HeaderSearchIcon = styled.View`
   margin-left: 5px;
 `;
-export const ThemeSwitch = styled.Switch``;
