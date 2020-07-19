@@ -1,14 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 
-// import { Container } from './styles';
+import { Container } from './styles';
+
+import Header from '../../components/Header';
 
 const Home = () => {
-  return (
-    <View>
-      <Text>Hello</Text>
-    </View>
-  );
+  return <Container />;
 };
 
 export default Home;
