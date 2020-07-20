@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import * as Animatable from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -30,6 +30,7 @@ const AnimatedButton = Animatable.createAnimatableComponent(ButtonIcon);
 export default function IconList({ data, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
+  const [favorite, setFavorite] = useState(false);
 
   const PressAnimateLike = () => {
     if (AnimationRefLike) {
@@ -101,7 +102,11 @@ export default function IconList({ data, font }) {
             duration={500}
             useNativeDriver
           >
-            <AntDesign name="heart" size={20} color="#1ED760" />
+            {favorite ? (
+              <AntDesign name="heart" size={20} color="#1ED760" />
+            ) : (
+              <AntDesign name="hearto" size={20} color="#1ED760" />
+            )}
           </AnimatedButton>
         </IndividualContainer>
         <IndividualContainer>
