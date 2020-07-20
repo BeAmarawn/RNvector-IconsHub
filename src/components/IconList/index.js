@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Clipboard from '@react-native-community/clipboard';
 import * as Animatable from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
@@ -31,6 +32,10 @@ export default function IconList({ data, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
+
+  const copyToClipboard = () => {
+    Clipboard.setString(data);
+  };
 
   const PressAnimateLike = () => {
     if (AnimationRefLike) {
@@ -113,6 +118,7 @@ export default function IconList({ data, font }) {
           <AnimatedButton
             onPress={() => {
               PressAnimateClip();
+              copyToClipboard();
             }}
             ref={AnimationRefClip}
             duration={500}
