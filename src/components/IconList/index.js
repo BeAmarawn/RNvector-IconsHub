@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import * as Animatable from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -21,9 +22,26 @@ import {
   IndividualContainer,
   LabelContainer,
   LabelName,
+  ButtonIcon,
 } from './styles';
 
+const AnimatedButton = Animatable.createAnimatableComponent(ButtonIcon);
+
 export default function IconList({ data, font }) {
+  const AnimationRefLike = useRef(null);
+  const AnimationRefClip = useRef(null);
+
+  const PressAnimateLike = () => {
+    if (AnimationRefLike) {
+      AnimationRefLike.current?.zoomIn();
+    }
+  };
+  const PressAnimateClip = () => {
+    if (AnimationRefClip) {
+      AnimationRefClip.current?.zoomIn();
+    }
+  };
+
   const Icon = () => {
     switch (font) {
       case 'AntDesign':
@@ -75,10 +93,28 @@ export default function IconList({ data, font }) {
     <CardContainer>
       <ActionsContainer>
         <IndividualContainer>
-          <AntDesign name="heart" size={20} color="#1ED760" />
+          <AnimatedButton
+            onPress={() => {
+              PressAnimateLike();
+            }}
+            ref={AnimationRefLike}
+            duration={500}
+            useNativeDriver
+          >
+            <AntDesign name="heart" size={20} color="#1ED760" />
+          </AnimatedButton>
         </IndividualContainer>
         <IndividualContainer>
-          <Ionicons name="copy" size={20} color="#1ED760" />
+          <AnimatedButton
+            onPress={() => {
+              PressAnimateClip();
+            }}
+            ref={AnimationRefClip}
+            duration={500}
+            useNativeDriver
+          >
+            <Ionicons name="copy" size={20} color="#1ED760" />
+          </AnimatedButton>
         </IndividualContainer>
       </ActionsContainer>
       <IconContainer>{Icon()}</IconContainer>
