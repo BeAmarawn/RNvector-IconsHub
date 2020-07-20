@@ -11,6 +11,7 @@ export const CardContainer = styled.View`
 `;
 export const IconContainer = styled.View`
   align-items: center;
+  flex: 1;
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;
@@ -21,4 +22,15 @@ export const ActionsContainer = styled.View`
 export const IndividualContainer = styled.View`
   margin-top: 7px;
   margin-left: 115px;
+`;
+export const LabelContainer = styled.View`
+  margin-bottom: 5px;
+  margin-top: auto;
+  justify-content: center;
+  align-items: center;
+`;
+export const LabelName = styled.Text`
+  font-family: Gotham-Light;
+  font-size: 18px;
+  color: #fff;
 `;
