@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Foundation from 'react-native-vector-icons/Foundation';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from './pages/Home';
+import IconList from './components/IconList';
 import Favorites from './pages/Favorites';
 
 const Tab = createBottomTabNavigator();

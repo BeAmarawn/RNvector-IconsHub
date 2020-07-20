@@ -13,3 +13,6 @@ export const ListsContainer = styled.View`
   margin-left: 15px;
   margin-top: 45px;
 `;
+export const FlatListicons = styled.FlatList.attrs({
+  showsHorizontalScrollIndicator: false,
+})``;
