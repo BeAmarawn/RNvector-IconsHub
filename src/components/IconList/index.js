@@ -19,6 +19,8 @@ import {
   IconContainer,
   ActionsContainer,
   IndividualContainer,
+  LabelContainer,
+  LabelName,
 } from './styles';
 
 export default function IconList({ data, font }) {
@@ -80,6 +82,10 @@ export default function IconList({ data, font }) {
         </IndividualContainer>
       </ActionsContainer>
       <IconContainer>{Icon()}</IconContainer>
+
+      <LabelContainer>
+        <LabelName>{data}</LabelName>
+      </LabelContainer>
     </CardContainer>
   );
 }
