@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Alert } from 'react-native';
 import Clipboard from '@react-native-community/clipboard';
 import * as Animatable from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -33,8 +34,13 @@ export default function IconList({ data, font }) {
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
 
+  function setLikeFavorite() {
+    setFavorite(!favorite);
+  };
+
   const copyToClipboard = () => {
     Clipboard.setString(data);
+    Alert.alert('','Copied!');
   };
 
   const PressAnimateLike = () => {
@@ -102,6 +108,7 @@ export default function IconList({ data, font }) {
           <AnimatedButton
             onPress={() => {
               PressAnimateLike();
+              setLikeFavorite();
             }}
             ref={AnimationRefLike}
             duration={500}
