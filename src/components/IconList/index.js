@@ -1,7 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
+
 import Clipboard from '@react-native-community/clipboard';
 import * as Animatable from 'react-native-animatable';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -33,14 +36,27 @@ export default function IconList({ data, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
+  const [itsEmpity, setEmpty] = useState();
 
-  function setLikeFavorite() {
-    setFavorite(!favorite);
+  const iconFav = { name: data, place: font };
+
+  const saveFavorites = async () => {
+    const data = await AsyncStorage.getItem('Favorites_icons');
+
+    let arr = JSON.parse(data);
+    arr ? arr.push(iconFav) : (arr = [iconFav]);
+    await AsyncStorage.setItem('Favorites_icons', JSON.stringify(arr));
+    Alert.alert('done');
   };
+
+  async function setLikeFavorite() {
+    setFavorite(!favorite);
+    saveFavorites();
+  }
 
   const copyToClipboard = () => {
     Clipboard.setString(data);
-    Alert.alert('','Copied!');
+    Alert.alert('Copied!');
   };
 
   const PressAnimateLike = () => {
