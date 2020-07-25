@@ -27,28 +27,36 @@ const Home = () => {
           <FlatListicons
             data={NameAntDesign}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="AntDesign" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="AntDesign" />
+            )}
             horizontal
           />
           <LabelFont>Entypo</LabelFont>
           <FlatListicons
             data={NameEntypo}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Entypo" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Entypo" />
+            )}
             horizontal
           />
           <LabelFont>EvilIcons</LabelFont>
           <FlatListicons
             data={NameEvilIcons}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="EvilIcons" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="EvilIcons" />
+            )}
             horizontal
           />
           <LabelFont>Feather</LabelFont>
           <FlatListicons
             data={NameFeather}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Feather" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Feather" />
+            )}
             horizontal
           />
           <LabelFont>FontAwesome</LabelFont>
@@ -56,7 +64,7 @@ const Home = () => {
             data={NameFontAwesome}
             keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
-              <IconList data={item} font="FontAwesome" />
+              <IconList nameProp={item} font="FontAwesome" />
             )}
             horizontal
           />
@@ -64,7 +72,9 @@ const Home = () => {
           <FlatListicons
             data={NameFontisto}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Fontisto" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Fontisto" />
+            )}
             horizontal
           />
           <LabelFont>Foundation</LabelFont>
@@ -72,7 +82,7 @@ const Home = () => {
             data={NameFoundation}
             keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
-              <IconList data={item} font="Foundation" />
+              <IconList nameProp={item} font="Foundation" />
             )}
             horizontal
           />
@@ -80,7 +90,9 @@ const Home = () => {
           <FlatListicons
             data={NameIonicons}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Ionicons" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Ionicons" />
+            )}
             horizontal
           />
           <LabelFont>MaterialCommunityIcons</LabelFont>
@@ -88,7 +100,7 @@ const Home = () => {
             data={NameMaterialCommunityIcons}
             keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
-              <IconList data={item} font="MaterialCommunityIcons" />
+              <IconList nameProp={item} font="MaterialCommunityIcons" />
             )}
             horizontal
           />
@@ -97,7 +109,7 @@ const Home = () => {
             data={NameMaterialIcons}
             keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
-              <IconList data={item} font="MaterialIcons" />
+              <IconList nameProp={item} font="MaterialIcons" />
             )}
             horizontal
           />
@@ -105,7 +117,9 @@ const Home = () => {
           <FlatListicons
             data={NameOcticons}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Octicons" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Octicons" />
+            )}
             horizontal
           />
           <LabelFont>SimpleLineIcons</LabelFont>
@@ -113,7 +127,7 @@ const Home = () => {
             data={NameSimpleLineIcons}
             keyExtractor={(item, index) => String(index)}
             renderItem={({ item }) => (
-              <IconList data={item} font="SimpleLineIcons" />
+              <IconList nameProp={item} font="SimpleLineIcons" />
             )}
             horizontal
           />
@@ -121,7 +135,9 @@ const Home = () => {
           <FlatListicons
             data={NameZocial}
             keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => <IconList data={item} font="Zocial" />}
+            renderItem={({ item }) => (
+              <IconList nameProp={item} font="Zocial" />
+            )}
             horizontal
           />
         </ListsContainer>

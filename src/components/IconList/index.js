@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 
+import { useFocusEffect } from '@react-navigation/native';
+
 import Clipboard from '@react-native-community/clipboard';
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -32,21 +34,49 @@ import {
 
 const AnimatedButton = Animatable.createAnimatableComponent(ButtonIcon);
 
-export default function IconList({ data, font }) {
+export default function IconList({ nameProp, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
   const [itsEmpity, setEmpty] = useState();
 
-  const iconFav = { name: data, place: font };
+  const iconFav = { name: nameProp, place: font };
+
+  const verifierFav = () => {
+    isFavorited();
+  };
+
+  const isFavorited = async () => {
+    const storeFavs = await AsyncStorage.getItem('Favorites_icons');
+    const arr = JSON.parse(storeFavs);
+    if (arr != null && arr.findIndex((e) => e.name === iconFav.name) != -1) {
+      setFavorite(true);
+    } else {
+      setFavorite(false);
+    }
+  };
 
   const saveFavorites = async () => {
-    const data = await AsyncStorage.getItem('Favorites_icons');
+    const storeSave = await AsyncStorage.getItem('Favorites_icons');
 
-    let arr = JSON.parse(data);
+    let arr = JSON.parse(storeSave);
     arr ? arr.push(iconFav) : (arr = [iconFav]);
     await AsyncStorage.setItem('Favorites_icons', JSON.stringify(arr));
-    Alert.alert('done');
+    Alert.alert('', 'Salvo com suceso!');
+  };
+  const removeFavorites = async () => {
+    const store = await AsyncStorage.getItem('Favorites_icons');
+
+    const arr = JSON.parse(store);
+
+    arr.splice(
+      arr.findIndex((e) => e.name === nameProp),
+      1
+    );
+
+    await AsyncStorage.setItem('Favorites_icons', JSON.stringify(arr));
+    setFavorite(false);
+    Alert.alert('', 'Removido com suceso!');
   };
 
   async function setLikeFavorite() {
@@ -55,7 +85,7 @@ export default function IconList({ data, font }) {
   }
 
   const copyToClipboard = () => {
-    Clipboard.setString(data);
+    Clipboard.setString(nameProp);
     Alert.alert('Copied!');
   };
 
@@ -70,48 +100,56 @@ export default function IconList({ data, font }) {
     }
   };
 
+  useEffect(() => {
+    isFavorited();
+  }, []);
+
+  useFocusEffect(verifierFav);
+
   const Icon = () => {
     switch (font) {
       case 'AntDesign':
-        return <AntDesign name={data} size={65} color="#fff" />;
+        return <AntDesign name={nameProp} size={65} color="#fff" />;
         break;
       case 'Entypo':
-        return <Entypo name={data} size={65} color="#fff" />;
+        return <Entypo name={nameProp} size={65} color="#fff" />;
       case 'EvilIcons':
-        return <EvilIcons name={data} size={65} color="#fff" />;
+        return <EvilIcons name={nameProp} size={65} color="#fff" />;
         break;
       case 'Feather':
-        return <Feather name={data} size={65} color="#fff" />;
+        return <Feather name={nameProp} size={65} color="#fff" />;
         break;
       case 'FontAwesome':
-        return <FontAwesome name={data} size={65} color="#fff" />;
+        return <FontAwesome name={nameProp} size={65} color="#fff" />;
         break;
       case 'FontAwesome5':
-        return <FontAwesome5 name={data} size={65} color="#fff" />;
+        return <FontAwesome5 name={nameProp} size={65} color="#fff" />;
         break;
       case 'Fontisto':
-        return <Fontisto name={data} size={65} color="#fff" />;
+        return <Fontisto name={nameProp} size={65} color="#fff" />;
         break;
       case 'Foundation':
-        return <Foundation name={data} size={65} color="#fff" />;
+        return <Foundation name={nameProp} size={65} color="#fff" />;
         break;
       case 'Ionicons':
-        return <Ionicons name={data} size={65} color="#fff" />;
+        return <Ionicons name={nameProp} size={65} color="#fff" />;
         break;
       case 'MaterialCommunityIcons':
-        return <MaterialCommunityIcons name={data} size={65} color="#fff" />;
+        return (
+          <MaterialCommunityIcons name={nameProp} size={65} color="#fff" />
+        );
         break;
       case 'MaterialIcons':
-        return <MaterialIcons name={data} size={65} color="#fff" />;
+        return <MaterialIcons name={nameProp} size={65} color="#fff" />;
         break;
       case 'Octicons':
-        return <Octicons name={data} size={65} color="#fff" />;
+        return <Octicons name={nameProp} size={65} color="#fff" />;
         break;
       case 'SimpleLineIcons':
-        return <SimpleLineIcons name={data} size={65} color="#fff" />;
+        return <SimpleLineIcons name={nameProp} size={65} color="#fff" />;
         break;
       case 'Zocial':
-        return <Zocial name={data} size={65} color="#fff" />;
+        return <Zocial name={nameProp} size={65} color="#fff" />;
         break;
       default:
         null;
@@ -124,7 +162,7 @@ export default function IconList({ data, font }) {
           <AnimatedButton
             onPress={() => {
               PressAnimateLike();
-              setLikeFavorite();
+              favorite ? removeFavorites() : setLikeFavorite();
             }}
             ref={AnimationRefLike}
             duration={500}
@@ -154,7 +192,7 @@ export default function IconList({ data, font }) {
       <IconContainer>{Icon()}</IconContainer>
 
       <LabelContainer>
-        <LabelName>{data}</LabelName>
+        <LabelName>{nameProp}</LabelName>
       </LabelContainer>
     </CardContainer>
   );
