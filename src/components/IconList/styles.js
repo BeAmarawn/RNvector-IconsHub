@@ -34,3 +34,4 @@ export const LabelName = styled.Text`
   font-size: 18px;
   color: #fff;
 `;
+export const ButtonIcon = styled.TouchableOpacity``;
