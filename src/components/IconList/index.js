@@ -38,7 +38,6 @@ export default function IconList({ nameProp, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
-  const [itsEmpity, setEmpty] = useState();
 
   const iconFav = { name: nameProp, place: font };
 
