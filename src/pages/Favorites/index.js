@@ -18,29 +18,16 @@ import IconList from '../../components/IconList';
 
 const Favorites = () => {
   const [data, setData] = useState([]);
-  const [fontAntDesign, setAntDesign] = useState(true);
-  const [fontEntypo, setEntypo] = useState(false);
-  const [fontEvilIcons, setEvilIcons] = useState(false);
-  const [fontFeather, setFeather] = useState(false);
-  const [fontFontAwesome, setFontAwesome] = useState(false);
-  const [fontFontisto, setFontisto] = useState(false);
-  const [fontFoundation, setFoundation] = useState(false);
-  const [fontIonicons, setIonicons] = useState(false);
-  const [fontMaterialCommunityIcons, setMaterialCommunityIcons] = useState(
-    false
-  );
-  const [fontMaterialIcons, setMaterialIcons] = useState(false);
-  const [fontOcticons, setOcticons] = useState(false);
-  const [fontSimpleLineIcons, setSimpleLineIcons] = useState(false);
-  const [fontZocial, setZocial] = useState(false);
 
   const gett = async () => {
     const value = await AsyncStorage.getItem('Favorites_icons');
     setData(JSON.parse(value));
   };
+
   const onRefresh = () => {
     gett();
   };
+
   const clearAll = async () => {
     try {
       await AsyncStorage.clear();
