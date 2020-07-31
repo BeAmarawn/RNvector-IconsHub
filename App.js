@@ -10,7 +10,6 @@ const App: () => React$Node = () => {
   return (
     <>
       <StatusBar barStyle="light-content" />
-      <Header />
       <Routes />
     </>
   );
