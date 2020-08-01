@@ -4,6 +4,8 @@ import { Alert } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 
 import Clipboard from '@react-native-community/clipboard';
+import Snackbar from 'react-native-snackbar-component';
+
 import * as Animatable from 'react-native-animatable';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -38,7 +40,8 @@ export default function IconList({ nameProp, font }) {
   const AnimationRefLike = useRef(null);
   const AnimationRefClip = useRef(null);
   const [favorite, setFavorite] = useState(false);
-  const [itsEmpity, setEmpty] = useState();
+  const [isVisible, setIsVisible] = useState(false);
+  const [stateText, setStateText] = useState('');
 
   const iconFav = { name: nameProp, place: font };
 
@@ -62,7 +65,6 @@ export default function IconList({ nameProp, font }) {
     let arr = JSON.parse(storeSave);
     arr ? arr.push(iconFav) : (arr = [iconFav]);
     await AsyncStorage.setItem('Favorites_icons', JSON.stringify(arr));
-    Alert.alert('', 'Salvo com suceso!');
   };
   const removeFavorites = async () => {
     const store = await AsyncStorage.getItem('Favorites_icons');
@@ -76,7 +78,6 @@ export default function IconList({ nameProp, font }) {
 
     await AsyncStorage.setItem('Favorites_icons', JSON.stringify(arr));
     setFavorite(false);
-    Alert.alert('', 'Removido com suceso!');
   };
 
   async function setLikeFavorite() {
@@ -86,13 +87,20 @@ export default function IconList({ nameProp, font }) {
 
   const copyToClipboard = () => {
     Clipboard.setString(nameProp);
-    Alert.alert('Copied!');
+
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 1000);
+    //    Alert.alert('Copied!');
   };
 
   const PressAnimateLike = () => {
     if (AnimationRefLike) {
       AnimationRefLike.current?.zoomIn();
     }
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 1000);
   };
   const PressAnimateClip = () => {
     if (AnimationRefClip) {
@@ -162,7 +170,10 @@ export default function IconList({ nameProp, font }) {
           <AnimatedButton
             onPress={() => {
               PressAnimateLike();
-              favorite ? removeFavorites() : setLikeFavorite();
+              favorite
+                ? (removeFavorites(), setStateText('Unsaved!'))
+                : (setLikeFavorite(), setStateText('Saved!'));
+              setIsVisible(!isVisible);
             }}
             ref={AnimationRefLike}
             duration={500}
@@ -180,6 +191,8 @@ export default function IconList({ nameProp, font }) {
             onPress={() => {
               PressAnimateClip();
               copyToClipboard();
+              setStateText('Copied!');
+              setIsVisible(!isVisible);
             }}
             ref={AnimationRefClip}
             duration={500}
@@ -194,6 +207,11 @@ export default function IconList({ nameProp, font }) {
       <LabelContainer>
         <LabelName>{nameProp}</LabelName>
       </LabelContainer>
+      <Snackbar
+        visible={isVisible}
+        textMessage={stateText}
+        autoHidingTime={1000}
+      />
     </CardContainer>
   );
 }

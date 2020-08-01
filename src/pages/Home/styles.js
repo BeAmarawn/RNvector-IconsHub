@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { SearchBar } from 'react-native-elements';
 
 export const Container = styled.View`
   flex: 1;
@@ -16,3 +17,9 @@ export const ListsContainer = styled.View`
 export const FlatListicons = styled.FlatList.attrs({
   showsHorizontalScrollIndicator: false,
 })``;
+export const HeaderContainer = styled.View`
+  flex-direction: row;
+`;
+export const SearchBarr = styled(SearchBar)`
+  background: #272627;
+`;

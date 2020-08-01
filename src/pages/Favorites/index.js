@@ -1,6 +1,9 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Alert } from 'react-native';
+
+import Snackbar from 'react-native-snackbar-component';
+
 import { useFocusEffect } from '@react-navigation/native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -18,6 +21,8 @@ import IconList from '../../components/IconList';
 
 const Favorites = () => {
   const [data, setData] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [stateText, setStateText] = useState('');
 
   const gett = async () => {
     const value = await AsyncStorage.getItem('Favorites_icons');
@@ -32,9 +37,13 @@ const Favorites = () => {
     try {
       await AsyncStorage.clear();
     } catch (e) {
-      Alert.alert('', 'Error to clean your favorites');
+      setStateText('Something wrong on Clear!');
     }
-    Alert.alert('', 'Sucesso ao limpar');
+    setStateText('Nice Clear!');
+    setIsVisible(!isVisible);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -272,6 +281,11 @@ const Favorites = () => {
           ) : null}
         </ListsContainer>
       </ScrollView>
+      <Snackbar
+        visible={isVisible}
+        textMessage={stateText}
+        autoHidingTime={1000}
+      />
     </Container>
   );
 };
