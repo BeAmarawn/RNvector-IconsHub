@@ -52,7 +52,16 @@ export default function IconList({ nameProp, font }) {
   const isFavorited = async () => {
     const storeFavs = await AsyncStorage.getItem('Favorites_icons');
     const arr = JSON.parse(storeFavs);
-    if (arr != null && arr.findIndex((e) => e.name === iconFav.name) != -1) {
+    const verifiedArr =
+      arr != null
+        ? arr.map((e) => {
+            if (e.name == iconFav.name && e.place == iconFav.place) {
+              return true;
+            }
+            return false;
+          })
+        : null;
+    if (arr != null && verifiedArr.includes(true)) {
       setFavorite(true);
     } else {
       setFavorite(false);
@@ -72,7 +81,7 @@ export default function IconList({ nameProp, font }) {
     const arr = JSON.parse(store);
 
     arr.splice(
-      arr.findIndex((e) => e.name === nameProp),
+      arr.findIndex((e) => e.name === nameProp && e.place === font),
       1
     );
 
