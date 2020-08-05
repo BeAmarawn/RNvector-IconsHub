@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import {
   Container,
   LabelFont,
@@ -10,6 +10,8 @@ import {
 } from './styles';
 
 import IconList from '../../components/IconList';
+
+import ShimmerList from '../../components/ShimmerList';
 
 import NameAntDesign from '../NameAntDesign.js';
 import NameEntypo from '../NameEntypo.js';
@@ -46,111 +48,131 @@ const Home = () => {
   const [filteredNameSimp, setFilteredNameSimp] = useState(NameSimpleLineIcons);
   const [filteredNameZo, setFilteredNameZo] = useState(NameZocial);
 
-  useEffect(() => {
-    setIsLoading(true);
+  function funFilterAntDes() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameAntDesign.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredAntDes(newIconsSearch);
-    setIsLoading(false);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterEnty() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameEntypo.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameEnty(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterEvilIc() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameEvilIcons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameEvilI(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterFeath() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameFeather.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameFeather(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterFontAw() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameFontAwesome.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameFontAw(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterFonti() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameFontisto.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameFonti(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterFound() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameFoundation.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameFound(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterIon() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameIonicons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameIon(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterMaterialCo() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameMaterialCommunityIcons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameMaterialCo(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterMaterialI() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameMaterialIcons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameMaterialI(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterOcti() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameOcticons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameOct(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterSimpleLi() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameSimpleLineIcons.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
     setFilteredNameSimp(newIconsSearch);
-  }, [searchValue]);
-  useEffect(() => {
+  }
+  function funFilterZocial() {
     const lowerCaseSearch = searchValue.toLowerCase();
     const newIconsSearch = NameZocial.filter((icons) =>
       icons.includes(lowerCaseSearch)
     );
 
-    setFilteredNameZo(newIconsSearch);
+    return setFilteredNameZo(newIconsSearch);
+  }
+  function ToLoading() {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }
+  useEffect(() => {
+    ToLoading();
+    funFilterAntDes();
+    funFilterEnty();
+    funFilterEvilIc();
+    funFilterFeath();
+    funFilterFontAw();
+    funFilterFonti();
+    funFilterFound();
+    funFilterIon();
+    funFilterMaterialCo();
+    funFilterMaterialI();
+    funFilterOcti();
+    funFilterSimpleLi();
+    funFilterZocial();
   }, [searchValue]);
   return (
     <Container>
@@ -172,122 +194,175 @@ const Home = () => {
       <ScrollView>
         <ListsContainer>
           <LabelFont>AntDesign</LabelFont>
-          <FlatListicons
-            data={filteredAntDes}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="AntDesign" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredAntDes}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="AntDesign" />
+              )}
+              horizontal
+            />
+          )}
+
           <LabelFont>Entypo</LabelFont>
-          <FlatListicons
-            data={filteredNameEnty}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Entypo" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameEnty}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Entypo" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>EvilIcons</LabelFont>
-          <FlatListicons
-            data={filteredNameEvilI}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="EvilIcons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameEvilI}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="EvilIcons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Feather</LabelFont>
-          <FlatListicons
-            data={filteredNameFeather}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Feather" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameFeather}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Feather" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>FontAwesome</LabelFont>
-          <FlatListicons
-            data={filteredNameFontAw}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="FontAwesome" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameFontAw}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="FontAwesome" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Fontisto</LabelFont>
-          <FlatListicons
-            data={filteredNameFonti}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Fontisto" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameFonti}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Fontisto" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Foundation</LabelFont>
-          <FlatListicons
-            data={filteredNameFound}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Foundation" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameFound}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Foundation" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Ionicons</LabelFont>
-          <FlatListicons
-            data={filteredNameIon}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Ionicons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameIon}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Ionicons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>MaterialCommunityIcons</LabelFont>
-          <FlatListicons
-            data={filteredNameMaterialCo}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="MaterialCommunityIcons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameMaterialCo}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="MaterialCommunityIcons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>MaterialIcons</LabelFont>
-          <FlatListicons
-            data={filteredNameMaterialI}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="MaterialIcons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameMaterialI}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="MaterialIcons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Octicons</LabelFont>
-          <FlatListicons
-            data={filteredNameOct}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Octicons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameOct}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Octicons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>SimpleLineIcons</LabelFont>
-          <FlatListicons
-            data={filteredNameSimp}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="SimpleLineIcons" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameSimp}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="SimpleLineIcons" />
+              )}
+              horizontal
+            />
+          )}
           <LabelFont>Zocial</LabelFont>
-          <FlatListicons
-            data={filteredNameZo}
-            keyExtractor={(item, index) => String(index)}
-            renderItem={({ item }) => (
-              <IconList nameProp={item} font="Zocial" />
-            )}
-            horizontal
-          />
+          {isLoading ? (
+            <ShimmerList />
+          ) : (
+            <FlatListicons
+              data={filteredNameZo}
+              keyExtractor={(item, index) => String(index)}
+              renderItem={({ item }) => (
+                <IconList nameProp={item} font="Zocial" />
+              )}
+              horizontal
+            />
+          )}
         </ListsContainer>
       </ScrollView>
     </Container>
