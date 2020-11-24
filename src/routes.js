@@ -16,21 +16,18 @@ export default function Routes() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
-          tabBarLabel: () => {
-            null;
-          },
           tabBarIcon: ({ focused, color }) => {
             let iconName;
 
             if (route.name === 'Home') {
-              return <Foundation name="home" size={45} color={color} />;
+              return <Foundation name="home" size={40} color={color} />;
             }
             if (route.name === 'Favorites') {
               iconName = focused ? 'cards-heart' : 'heart-outline';
               return (
                 <MaterialCommunityIcons
                   name={iconName}
-                  size={45}
+                  size={40}
                   color={color}
                 />
               );
@@ -44,7 +41,6 @@ export default function Routes() {
           inactiveTintColor: '#A1A2A1',
           style: {
             backgroundColor: '#272627',
-            height: 60,
           },
         }}
       >

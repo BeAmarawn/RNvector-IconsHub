@@ -11,7 +11,7 @@ export const CardContainer = styled.View`
 `;
 export const IconContainer = styled.View`
   align-items: center;
-  flex: 1;
+  flex-grow: 1;
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;

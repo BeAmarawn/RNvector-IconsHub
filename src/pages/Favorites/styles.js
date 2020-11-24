@@ -24,10 +24,20 @@ export const ClearButton = styled.TouchableOpacity`
   align-items: center;
   margin-left: auto;
   margin-right: 15px;
-  margin-top: 15px;
+`;
+export const GitButton = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  margin-right: auto;
 `;
 export const LabelClear = styled.Text`
   font-size: 18px;
   color: #fff;
   font-family: Gotham-Medium;
+`;
+export const HeaderView = styled.View`
+  margin-top: 5px;
+  flex-direction: row;
+  align-items: center;
 `;

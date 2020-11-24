@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import LottieView from 'lottie-react-native';
 import { ScrollView, Text } from 'react-native';
 import {
   Container,
@@ -47,6 +48,19 @@ const Home = () => {
   const [filteredNameOct, setFilteredNameOct] = useState(NameOcticons);
   const [filteredNameSimp, setFilteredNameSimp] = useState(NameSimpleLineIcons);
   const [filteredNameZo, setFilteredNameZo] = useState(NameZocial);
+  const [antLoad, setAntLoad] = useState(false);
+  const [entyLoad, setEntyLoad] = useState(false);
+  const [evilLoad, setEvilLoad] = useState(false);
+  const [featLoad, setFeatLoad] = useState(false);
+  const [fontawLoad, setFontawLoad] = useState(false);
+  const [fontiLoad, setFontiLoad] = useState(false);
+  const [foundLoad, setFoundLoad] = useState(false);
+  const [ionLoad, setIonLoad] = useState(false);
+  const [matcoLoad, setMatcoLoad] = useState(false);
+  const [maticLoad, setMaticLoad] = useState(false);
+  const [octLoad, setOctLoad] = useState(false);
+  const [simpLoad, setSimpLoad] = useState(false);
+  const [zocLoad, setZocLoad] = useState(false);
 
   function funFilterAntDes() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -55,6 +69,7 @@ const Home = () => {
     );
 
     setFilteredAntDes(newIconsSearch);
+    setAntLoad(true);
   }
   function funFilterEnty() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -63,6 +78,7 @@ const Home = () => {
     );
 
     setFilteredNameEnty(newIconsSearch);
+    setEntyLoad(true);
   }
   function funFilterEvilIc() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -71,6 +87,7 @@ const Home = () => {
     );
 
     setFilteredNameEvilI(newIconsSearch);
+    setEvilLoad(true);
   }
   function funFilterFeath() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -79,6 +96,7 @@ const Home = () => {
     );
 
     setFilteredNameFeather(newIconsSearch);
+    setFeatLoad(true);
   }
   function funFilterFontAw() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -87,6 +105,7 @@ const Home = () => {
     );
 
     setFilteredNameFontAw(newIconsSearch);
+    setFontawLoad(true);
   }
   function funFilterFonti() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -95,6 +114,7 @@ const Home = () => {
     );
 
     setFilteredNameFonti(newIconsSearch);
+    setFontiLoad(true);
   }
   function funFilterFound() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -103,6 +123,7 @@ const Home = () => {
     );
 
     setFilteredNameFound(newIconsSearch);
+    setFoundLoad(true);
   }
   function funFilterIon() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -111,6 +132,7 @@ const Home = () => {
     );
 
     setFilteredNameIon(newIconsSearch);
+    setIonLoad(true);
   }
   function funFilterMaterialCo() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -119,6 +141,7 @@ const Home = () => {
     );
 
     setFilteredNameMaterialCo(newIconsSearch);
+    setMatcoLoad(true);
   }
   function funFilterMaterialI() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -127,6 +150,7 @@ const Home = () => {
     );
 
     setFilteredNameMaterialI(newIconsSearch);
+    setMaticLoad(true);
   }
   function funFilterOcti() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -135,6 +159,7 @@ const Home = () => {
     );
 
     setFilteredNameOct(newIconsSearch);
+    setOctLoad(true);
   }
   function funFilterSimpleLi() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -143,6 +168,7 @@ const Home = () => {
     );
 
     setFilteredNameSimp(newIconsSearch);
+    setSimpLoad(true);
   }
   function funFilterZocial() {
     const lowerCaseSearch = searchValue.toLowerCase();
@@ -150,16 +176,45 @@ const Home = () => {
       icons.includes(lowerCaseSearch)
     );
 
-    return setFilteredNameZo(newIconsSearch);
+    setFilteredNameZo(newIconsSearch);
+    setZocLoad(true);
   }
-  function ToLoading() {
-    setIsLoading(true);
-    setTimeout(() => {
+
+  function endLoader() {
+    if (
+      antLoad &&
+      entyLoad &&
+      evilLoad &&
+      featLoad &&
+      fontawLoad &&
+      fontiLoad &&
+      foundLoad &&
+      ionLoad &&
+      matcoLoad &&
+      maticLoad &&
+      octLoad &&
+      simpLoad &&
+      zocLoad
+    ) {
       setIsLoading(false);
-    }, 3000);
+      setAntLoad(false);
+      setEntyLoad(false);
+      setEvilLoad(false);
+      setFeatLoad(false);
+      setFontawLoad(false);
+      setFontiLoad(false);
+      setFoundLoad(false);
+      setIonLoad(false);
+      setMatcoLoad(false);
+      setMaticLoad(false);
+      setOctLoad(false);
+      setSimpLoad(false);
+      setZocLoad(false);
+    }
   }
+
   useEffect(() => {
-    ToLoading();
+    setIsLoading(true);
     funFilterAntDes();
     funFilterEnty();
     funFilterEvilIc();
@@ -174,6 +229,25 @@ const Home = () => {
     funFilterSimpleLi();
     funFilterZocial();
   }, [searchValue]);
+
+  useEffect(() => {
+    endLoader();
+  }, [
+    antLoad,
+    entyLoad,
+    evilLoad,
+    featLoad,
+    fontawLoad,
+    fontiLoad,
+    foundLoad,
+    ionLoad,
+    matcoLoad,
+    maticLoad,
+    octLoad,
+    simpLoad,
+    zocLoad,
+  ]);
+
   return (
     <Container>
       <HeaderContainer>
@@ -191,12 +265,17 @@ const Home = () => {
           round
         />
       </HeaderContainer>
-      <ScrollView>
-        <ListsContainer>
-          <LabelFont>AntDesign</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+      {isLoading ? (
+        <LottieView
+          source={require('../../../assets/animations/loading_loop.json')}
+          autoPlay
+          loop
+        />
+      ) : (
+        <ScrollView>
+          <ListsContainer>
+            <LabelFont>AntDesign</LabelFont>
+
             <FlatListicons
               data={filteredAntDes}
               keyExtractor={(item, index) => String(index)}
@@ -205,12 +284,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
 
-          <LabelFont>Entypo</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+            <LabelFont>Entypo</LabelFont>
+
             <FlatListicons
               data={filteredNameEnty}
               keyExtractor={(item, index) => String(index)}
@@ -219,11 +295,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>EvilIcons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>EvilIcons</LabelFont>
+
             <FlatListicons
               data={filteredNameEvilI}
               keyExtractor={(item, index) => String(index)}
@@ -232,11 +306,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Feather</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Feather</LabelFont>
+
             <FlatListicons
               data={filteredNameFeather}
               keyExtractor={(item, index) => String(index)}
@@ -245,11 +317,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>FontAwesome</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>FontAwesome</LabelFont>
+
             <FlatListicons
               data={filteredNameFontAw}
               keyExtractor={(item, index) => String(index)}
@@ -258,11 +328,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Fontisto</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Fontisto</LabelFont>
+
             <FlatListicons
               data={filteredNameFonti}
               keyExtractor={(item, index) => String(index)}
@@ -271,11 +339,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Foundation</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Foundation</LabelFont>
+
             <FlatListicons
               data={filteredNameFound}
               keyExtractor={(item, index) => String(index)}
@@ -284,11 +350,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Ionicons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Ionicons</LabelFont>
+
             <FlatListicons
               data={filteredNameIon}
               keyExtractor={(item, index) => String(index)}
@@ -297,11 +361,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>MaterialCommunityIcons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>MaterialCommunityIcons</LabelFont>
+
             <FlatListicons
               data={filteredNameMaterialCo}
               keyExtractor={(item, index) => String(index)}
@@ -310,11 +372,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>MaterialIcons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>MaterialIcons</LabelFont>
+
             <FlatListicons
               data={filteredNameMaterialI}
               keyExtractor={(item, index) => String(index)}
@@ -323,11 +383,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Octicons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Octicons</LabelFont>
+
             <FlatListicons
               data={filteredNameOct}
               keyExtractor={(item, index) => String(index)}
@@ -336,11 +394,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>SimpleLineIcons</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>SimpleLineIcons</LabelFont>
+
             <FlatListicons
               data={filteredNameSimp}
               keyExtractor={(item, index) => String(index)}
@@ -349,11 +405,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-          <LabelFont>Zocial</LabelFont>
-          {isLoading ? (
-            <ShimmerList />
-          ) : (
+
+            <LabelFont>Zocial</LabelFont>
+
             <FlatListicons
               data={filteredNameZo}
               keyExtractor={(item, index) => String(index)}
@@ -362,9 +416,9 @@ const Home = () => {
               )}
               horizontal
             />
-          )}
-        </ListsContainer>
-      </ScrollView>
+          </ListsContainer>
+        </ScrollView>
+      )}
     </Container>
   );
 };

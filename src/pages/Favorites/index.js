@@ -1,6 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
-import { ScrollView, Alert } from 'react-native';
+import { ScrollView, Alert, Linking } from 'react-native';
+import Zocial from 'react-native-vector-icons/Zocial';
 
 import Snackbar from 'react-native-snackbar-component';
 
@@ -15,6 +16,8 @@ import {
   FlatListicons,
   ClearButton,
   LabelClear,
+  GitButton,
+  HeaderView,
 } from './styles';
 
 import IconList from '../../components/IconList';
@@ -53,9 +56,18 @@ const Favorites = () => {
   return (
     <Container>
       <ScrollView>
-        <ClearButton onPress={() => clearAll()}>
-          <LabelClear>Clear</LabelClear>
-        </ClearButton>
+        <HeaderView>
+          <GitButton
+            onPress={() =>
+              Linking.openURL('https://github.com/BeAmarawn/RNvector-IconsHub')
+            }
+          >
+            <Zocial name="github" size={40} color="#fff" />
+          </GitButton>
+          <ClearButton onPress={() => clearAll()}>
+            <LabelClear>Clear</LabelClear>
+          </ClearButton>
+        </HeaderView>
         <ListsContainer>
           {data != null ? (
             data.findIndex((e) => e.place === 'AntDesign') != -1 ? (
