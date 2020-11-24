@@ -1,7 +1,7 @@
 # IconsHub - React Native
 
 ![Preview-Screens](https://github.com/BeAmarawn/RNvector-IconsHub/blob/develop/promoImages/Screenshots.png)
-![Preview-Gif](https://github.com/BeAmarawn/RNvector-IconsHub/blob/master/promoImages/loading.gif)
+![Preview-Gif](https://github.com/BeAmarawn/RNvector-IconsHub/blob/develop/promoImages/loading.gif)
 
 ## About this Project
 
