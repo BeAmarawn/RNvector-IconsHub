@@ -253,16 +253,14 @@ const Home = () => {
       <HeaderContainer>
         <SearchBarr
           platform="ios"
-          containerStyle={{ backgroundColor: '#272627' }}
+          containerStyle={{ backgroundColor: '#121113' }}
           inputContainerStyle={{
-            borderRadius: 50,
             backgroundColor: '#353338',
           }}
           inputStyle={{ color: '#fff' }}
           value={searchValue}
           onChangeText={setSearchValue}
           placeholder="Search for Icons!"
-          round
         />
       </HeaderContainer>
       {isLoading ? (

@@ -186,7 +186,7 @@ export default function IconList({ nameProp, font }) {
             }}
             ref={AnimationRefLike}
             duration={500}
-            useNativeDriver
+            useNativeDriver={true}
           >
             {favorite ? (
               <AntDesign name="heart" size={20} color="#1ED760" />
