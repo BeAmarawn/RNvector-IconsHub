@@ -29,9 +29,12 @@ export const LabelContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
-export const LabelName = styled.Text`
+export const LabelName = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   font-family: Gotham-Light;
-  font-size: 18px;
+  font-size: 15px;
   color: #fff;
+  max-width: 120px;
 `;
 export const ButtonIcon = styled.TouchableOpacity``;

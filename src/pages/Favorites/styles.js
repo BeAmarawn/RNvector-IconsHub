@@ -1,8 +1,10 @@
 import styled from 'styled-components/native';
+import { StatusBar } from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
   background: #121113;
+  padding-top: ${StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 30}px;
 `;
 export const LabelFont = styled.Text`
   font-size: 35px;
@@ -40,4 +42,5 @@ export const HeaderView = styled.View`
   margin-top: 5px;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
 `;
